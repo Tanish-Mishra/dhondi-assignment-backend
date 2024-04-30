@@ -6,13 +6,21 @@ const cors = require('cors')
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost'
 const errorHandler = require('./middlewares/errorHandler')
+const dbConfig = require('./config/dbConfig')
+dbConfig()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(errorHandler)
-app.get('/',(req,res)=>{
-    res.send("Hello World")
+
+const blogRoutes = require('./routes/blogRoutes')
+
+app.use('/api/v1/blogs',blogRoutes)
+
+
+app.get('/health',(req,res)=>{
+    res.send("Server is Running Healthy!")
 })
 
 
