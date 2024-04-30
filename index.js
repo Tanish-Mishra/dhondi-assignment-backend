@@ -20,7 +20,7 @@ app.use('/api/v1/blogs',blogRoutes)
 
 
 app.get('/health',(req,res)=>{
-    res.send("Server is Running Healthy!")
+    res.send("Server is Running Healthy on AWS!")
 })
 
 
